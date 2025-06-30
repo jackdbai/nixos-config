@@ -1,11 +1,11 @@
 { config, pkgs, lib, home-manager, ... }:
 
 let
-  user           = "dustin";
-  myEmacsLauncher = pkgs.writeScript "emacs-launcher.command" ''
-    #!/bin/sh
-    emacsclient -c -n &
-  '';
+  user           = "jack";
+  # myEmacsLauncher = pkgs.writeScript "emacs-launcher.command" ''
+  #   #!/bin/sh
+  #   emacsclient -c -n &
+  # '';
   sharedFiles     = import ../shared/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
@@ -35,8 +35,9 @@ in
     enable = true;
     casks  = pkgs.callPackage ./casks.nix {};
     masApps = {
-      "hidden-bar"   = 1452453066;
-      "wireguard"    = 1451685025;
+      # "hidden-bar"   = 1452453066;
+      # "wireguard"    = 1451685025;
+      "screenzen"    = 1541027222;
     };
   };
 
@@ -50,7 +51,7 @@ in
           file = lib.mkMerge [
             sharedFiles
             additionalFiles
-            { "emacs-launcher.command".source = myEmacsLauncher; }
+            # { "emacs-launcher.command".source = myEmacsLauncher; }
           ];
           stateVersion = "23.11";
         };
@@ -64,33 +65,37 @@ in
     enable   = true;
     username = user;
     entries  = [
-      { path = "/Applications/Slack.app/"; }
-      { path = "/System/Applications/Messages.app/"; }
-      { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
-      { path = "/System/Applications/Music.app/"; }
-      { path = "/System/Applications/Photos.app/"; }
-      { path = "/System/Applications/Photo Booth.app/"; }
-      { path = "/System/Applications/TV.app/"; }
-      { path = "${pkgs.jetbrains.phpstorm}/Applications/PhpStorm.app/"; }
-      { path = "/Applications/TablePlus.app/"; }
-      { path = "/Applications/Claude.app/"; }
-      { path = "/Applications/Discord.app/"; }
-      { path = "/Applications/TickTick.app/"; }
-      { path = "/System/Applications/Home.app/"; }
-      {
-        path    = toString myEmacsLauncher;
-        section = "others";
-      }
-      {
-        path    = "${config.users.users.${user}.home}/.local/share/";
-        section = "others";
-        options = "--sort name --view grid --display folder";
-      }
-      {
-        path    = "${config.users.users.${user}.home}/.local/share/downloads";
-        section = "others";
-        options = "--sort name --view grid --display stack";
-      }
+      # { path = "/Applications/Slack.app/"; }
+      # { path = "/System/Applications/Messages.app/"; }
+      # { path = "${pkgs.alacritty}/Applications/Alacritty.app/"; }
+      # { path = "/System/Applications/Music.app/"; }
+      # { path = "/System/Applications/Photos.app/"; }
+      # { path = "/System/Applications/Photo Booth.app/"; }
+      # { path = "/System/Applications/TV.app/"; }
+      # { path = "${pkgs.jetbrains.phpstorm}/Applications/PhpStorm.app/"; }
+      # { path = "/Applications/TablePlus.app/"; }
+      # { path = "/Applications/Claude.app/"; }
+      # { path = "/Applications/Discord.app/"; }
+      # { path = "/Applications/TickTick.app/"; }
+      # { path = "/System/Applications/Home.app/"; }
+
+      { path = "/Applications/Cursor.app/"; }
+      { path = "/Applications/Github Desktop.app/"; }
+      { path = "/Applications/Utilities/Terminal.app/"; }
+      # {
+      #   path    = toString myEmacsLauncher;
+      #   section = "others";
+      # }
+      # {
+      #   path    = "${config.users.users.${user}.home}/.local/share/";
+      #   section = "others";
+      #   options = "--sort name --view grid --display folder";
+      # }
+      # {
+      #   path    = "${config.users.users.${user}.home}/.local/share/downloads";
+      #   section = "others";
+      #   options = "--sort name --view grid --display stack";
+      # }
     ];
   };
 }

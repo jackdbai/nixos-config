@@ -7,5 +7,5 @@ shared-packages ++ [
   dockutil # Manage icons in the dock
 
   # F
-  fswatch # File change monitor
+  # fswatch # File change monitor
 ]
